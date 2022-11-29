@@ -41,50 +41,6 @@
             </div>
         </div>
     </div>
-    <div class="border">
-    </div>
-    <div class="page2 row">
-        <div class="col-md-10">
-            <InputSearch v-model="searchText" />
-        </div>
-        <div class="mt-3 col-md-6">
-            <h4>
-                Danh sách thức uống
-                <i class="fa-solid fa-mug-saucer"></i>
-            </h4>
-            <ContactList v-if="filteredContactsCount > 0" :contacts="filteredContacts"
-                v-model:activeIndex="activeIndex" />
-            <p v-else>Không có thức uống nào.</p>
-            <div class="mt-3 row justify-content-around align-items-center">
-                <button class="btn btn-sm btn-primary" @click="refreshList()">
-                    <i class="fas fa-redo"></i> Làm mới
-                </button>
-                <button class="btn btn-sm btn-success" @click="goToAddContact">
-                    <i class="fas fa-plus"></i> Thêm mới
-                </button>
-                <button class="btn btn-sm btn-danger" @click="removeAllContacts">
-                    <i class="fas fa-trash"></i> Xóa tất cả
-                </button>
-            </div>
-        </div>
-        <div class="mt-3 col-md-6">
-            <div v-if="activeContact">
-                <h4>
-                    Chi tiết thức uống
-                    <i class="fa-solid fa-mug-saucer"></i>
-                </h4>
-                <ContactCard :contact="activeContact" />
-                <router-link :to="{
-                    name: 'contact.edit',
-                    params: { id: activeContact._id },
-                }">
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh</span>
-                </router-link>
-
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -96,11 +52,13 @@ import ContactCard from "@/components/ContactCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
 import ContactList from "@/components/ContactList.vue";
 import ContactService from "@/services/contact.service";
+
 export default {
     components: {
         ContactCard,
         InputSearch,
         ContactList,
+        
     },
     data() {
         return {
@@ -109,6 +67,7 @@ export default {
             searchText: "",
         };
     },
+    
     watch: {
         // Giám sát các thay đổi của biến searchText.
         // Bỏ chọn phần tử đang được chọn trong danh sách.
@@ -124,6 +83,7 @@ export default {
                 return [name, email, address, phone].join("");
             });
         },
+        
         // Trả về các contact có chứa thông tin cần tìm kiếm.
         filteredContacts() {
             if (!this.searchText) return this.contacts;
@@ -131,13 +91,16 @@ export default {
                 this.contactStrings[index].includes(this.searchText)
             );
         },
+        
         activeContact() {
             if (this.activeIndex < 0) return null;
             return this.filteredContacts[this.activeIndex];
         },
+       
         filteredContactsCount() {
             return this.filteredContacts.length;
         },
+        
     },
     methods: {
         async retrieveContacts() {
@@ -147,10 +110,12 @@ export default {
                 console.log(error);
             }
         },
+        
         refreshList() {
             this.retrieveContacts();
             this.activeIndex = -1;
         },
+       
         async removeAllContacts() {
             if (confirm("Bạn muốn xóa tất cả nhân viên?")) {
                 try {
@@ -161,12 +126,15 @@ export default {
                 }
             }
         },
+        
         goToAddContact() {
             this.$router.push({ name: "contact.add" });
         },
+        
     },
     mounted() {
         this.refreshList();
+    
     },
 };
 </script>
@@ -176,16 +144,7 @@ export default {
     max-width: 750px;
 }
 
-.page2 {
-    text-align: left;
-    max-width: 650px;
-    border-top: 5px;
-}
 
-.border {
-    width: 100%;
-    height: 50px;
-    background-color: transparent;
-    border-color: transparent;
-}
+
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div v-if="contact" class="page">
-        <h4>Thêm Liên hệ</h4>
+        <h4>Thêm Nhân Viên</h4>
         <ContactForm :contact="contact" @submit:contact="createContact" />
         <p>{{ message }}</p>
     </div>
@@ -24,7 +24,7 @@ export default {
         async createContact(data) {
             try {
                 await ContactService.create(data);
-                this.message = "Liên hệ đã được thêm thành công.";
+                this.message = "Nhân viên đã được thêm thành công.";
             } catch (error) {
                 console.log(error);
             }
