@@ -16,7 +16,11 @@ export default {
             <strong>Giá:</strong>
             {{ thucuong.gia }}
         </div>
-
+        <div class="p-1">
+            <strong>Thức uống được yêu thích:&nbsp;</strong>
+            <i v-if="thucuong.favorite" class="fas fa-check"></i>
+            <i v-else class="fas fa-times"></i>
+        </div>
 
     </div>
 </template>

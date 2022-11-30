@@ -23,6 +23,11 @@ export default {
             <strong>Điện thoại:</strong>
             {{ contact.phone }}
         </div>
+        <div class="p-1">
+            <strong>Nhân viên được yêu thích:&nbsp;</strong>
+            <i v-if="contact.favorite" class="fas fa-check"></i>
+            <i v-else class="fas fa-times"></i>
+        </div>
 
     </div>
 </template>

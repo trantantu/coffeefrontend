@@ -27,7 +27,7 @@ export default {
                 this.thucuong = await ThucUongService.get(id);
             } catch (error) {
                 console.log(error);
-                // Chuyển sang trang NotFound đồng thời giữ cho URL không đổi
+
                 this.$router.push({
                     name: "notfound",
                     params: {
@@ -40,7 +40,7 @@ export default {
         },
         async updateThucUong(data) {
             try {
-                await ThucUongService.updatethucuong(this.contact._id, data);
+                await ThucUongService.updatethucuong(this.thucuong._id, data);
                 this.message = "Thức uống được cập nhật thành công.";
             } catch (error) {
                 console.log(error);
@@ -49,7 +49,7 @@ export default {
         async deleteThucUong() {
             if (confirm("Bạn muốn xóa thức uống này?")) {
                 try {
-                    await ThucUongService.deletethucuong(this.contact._id);
+                    await ThucUongService.deletethucuong(this.thucuong._id);
                     this.$router.push({ name: "Danh sách thức uống" });
                 } catch (error) {
                     console.log(error);

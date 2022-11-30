@@ -1,18 +1,18 @@
 <template>
     <div class="page row">
         <div class="col-md-10">
-            <InputSearch t-model="searchText" />
+            <InputSearch v-model="searchText" />
         </div>
         <div class="mt-3 col-md-6">
             <h4>
                 Danh sách thức uống
                 <i class="fa-solid fa-mug-saucer"></i>
             </h4>
-            <ContactList v-if="filteredThucUongCount > 0" :thucuong="filteredThucUong"
-                t-model:activeIndex="activeIndex" />
+            <ThucUongList v-if="filteredThucUongCount > 0" :thucuong="filteredThucUong"
+                v-model:activeIndex="activeIndex" />
             <p v-else>Không có thức uống nào.</p>
             <div class="mt-3 row justify-content-around align-items-center">
-                <button class="btn btn-sm btn-primary" @click="refreshListthucuong()">
+                <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
                 <button class="btn btn-sm btn-success" @click="goToAddThucUong">
@@ -120,7 +120,7 @@ export default {
         async removeAllThucUong() {
             if (confirm("Bạn muốn xóa tất cả thức uống?")) {
                 try {
-                    await ThucUongService.deleteAll();
+                    await ThucUongService.deleteAllthucuong();
                     this.refreshList();
                 } catch (error) {
                     console.log(error);

@@ -30,7 +30,7 @@ const routes = [
         component: ThucUongBook,
     },
     {
-        path: "/thucuong/:id",
+        path: "/doithucuong/:id",
         name: "thucuong.edit",
         component: () => import("@/views/ThucUongEdit.vue"),
         props: true

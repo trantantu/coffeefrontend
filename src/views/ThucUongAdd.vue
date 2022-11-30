@@ -23,7 +23,7 @@ export default {
 
         async createThucUong(data) {
             try {
-                await ThucUongService.create(data);
+                await ThucUongService.createthucuong(data);
                 this.message = "Thức uống đã được thêm thành công.";
             } catch (error) {
                 console.log(error);

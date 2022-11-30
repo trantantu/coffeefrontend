@@ -20,7 +20,12 @@
             <Field name="phone" type="tel" class="form-control" v-model="contactLocal.phone" />
             <ErrorMessage name="phone" class="error-feedback" />
         </div>
-
+        <div class="form-group form-check">
+            <input name="favorite" type="checkbox" class="form-check-input" v-model="contactLocal.favorite" />
+            <label for="favorite" class="form-check-label">
+                <strong>Nhân viên được yêu thích</strong>
+            </label>
+        </div>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="contactLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteContact">

@@ -10,6 +10,12 @@
             <Field name="gia" type="gia" class="form-control" t-model="thucuongLocal.gia" />
             <ErrorMessage name="gia" class="error-feedback" />
         </div>
+        <div class="form-group form-check">
+            <input name="favorite" type="checkbox" class="form-check-input" v-model="thucuongLocal.favorite" />
+            <label for="favorite" class="form-check-label">
+                <strong>Thức uống được yêu thích</strong>
+            </label>
+        </div>
         <div class="form-group">
             <button class="btn btn-primary">Lưu</button>
             <button v-if="thucuongLocal._id" type="button" class="ml-2 btn btn-danger" @click="deleteThucUong">
